@@ -11,13 +11,12 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3  # Updated to v3
+      uses: actions/checkout@v3  # This will automatically run on Node.js 20 when the transition happens
 
     - name: Sync S3 Bucket
       uses: jakejarvis/s3-sync-action@v0.5.1
       with:
-        args: --acl public-read --follow-symlinks --delete
-        source_dir: 'Website for resume'
+        args: --acl public-read --follow-symlinks --delete 'Website for resume/' s3://$AWS_S3_BUCKET/
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
