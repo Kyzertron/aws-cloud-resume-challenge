@@ -1,0 +1,9 @@
+var typed = new typed(".multiple-text", { 
+ 
+    strings: ["Cloud Engineer", "DevOps Engineer", "Site Reliability Engineer", "infrastructure Engineer"],
+
+    typeSpeed: 100,
+    backSpeed: 100,
+    backDelay:1000,
+    loop: true
+}) 
