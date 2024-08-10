@@ -9,13 +9,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-      uses: actions/checkout@master
-      uses: jakejarvis/s3-sync-action@master
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3  # Updated to v3
+
+    - name: Sync S3 Bucket
+      uses: jakejarvis/s3-sync-action@v0.5.1
       with:
         args: --acl public-read --follow-symlinks --delete
+        source_dir: 'Website for resume'
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'eu-west-2'
-        SOURCE_DIR: 'Website for resume'
